@@ -1,0 +1,21 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: Stephen Martin <sm(at)hypersrv.com>
+  description: Automatic updating of packages
+  company: "Hypersrv Systems LTD"
+  license: "license (MIT)"
+  min_ansible_version: 1.9
+  platforms:
+    - name: EL
+      versions:
+      - all
+    - name: Debian
+      versions:
+      - all
+    - name: Ubuntu
+      versions:
+      - all
+  galaxy_tags:
+    - system

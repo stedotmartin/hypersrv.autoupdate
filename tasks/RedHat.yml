@@ -1,0 +1,31 @@
+---
+- name: Install yum-cron
+  yum: name=yum-cron state=present
+
+- name: Install yum-utils
+  yum: name=yum-utils state=present
+  when: autoupdate_reboot
+
+- name: Auto reboot cron
+  cron:
+    name: "needs-restarting"
+    minute: "0"
+    hour: "3"
+    job: "/usr/bin/test -e /var/run/yum.pid || /usr/bin/needs-restarting -r > /dev/null 2>&1 || /usr/sbin/reboot > /dev/null 2>&1"
+  when: autoupdate_reboot
+
+- name: Auto reboot cron
+  cron:
+    name: "needs-restarting"
+    state: absent
+  when: not autoupdate_reboot
+
+- name: Enable yum-cron
+  service: name=yum-cron state=started enabled=yes
+
+- name: RHEL 7 yum-cron config
+  template:
+    src: r7-yum-cron.conf.j2
+    dest: /etc/yum/yum-cron.conf
+  when: ansible_distribution_major_version | int == 7
+  notify: restart yum-cron

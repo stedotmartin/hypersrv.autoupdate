@@ -1,0 +1,7 @@
+---
+# handlers file for hypersrv.autoupdate
+
+- name: restart yum-cron
+  service:
+    name: yum-cron
+    state: restarted
