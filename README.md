@@ -34,15 +34,15 @@ None.
 
 ## Example Playbook
 
-- hosts: all
-  become: true
-  vars:
-      autoupdate_mail: "alerts@somedomain.com"
-      autoupdate_non_security: true
-      autoupdate_reboot: true
-      autoupdate_mail_only_on_error: false
-  roles:
-    - role: hypersrv.autoupdate
+      - hosts: all
+        become: true
+        vars:
+            autoupdate_mail: "alerts@somedomain.com"
+            autoupdate_non_security: true
+            autoupdate_reboot: true
+            autoupdate_mail_only_on_error: false
+        roles:
+            - role: hypersrv.autoupdate
 
 ## License
 
